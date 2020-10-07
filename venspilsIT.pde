@@ -32,7 +32,7 @@ boolean itsNight=false;
  
 void setup() {
   size(1017, 841);
-  bg = loadImage("road.png"); 
+  bg = loadImage("road.jpeg"); 
   
   //size(1500, 1000);
  
