@@ -1,8 +1,7 @@
 import controlP5.*;
 
 ControlP5 controlP5;
-controlP5.Button b1;
-controlP5.Button b2;
+controlP5.Button b1, b2, b3;
 PImage bg;
 int cars = 0;
 int cars1 = 0;
@@ -84,6 +83,13 @@ void setup() {
     .setCaptionLabel("stop")
     .setPosition(680, 200)
     .setSize(60, 30); 
+  
+  b3 = controlP5.addButton("b3")
+    .setValue(0)
+    .setCaptionLabel("restart")
+    .setPosition(478, 595)
+    .setSize(80, 30)
+    .hide(); 
 
   bg = loadImage("road.jpeg"); 
 
@@ -242,10 +248,19 @@ void draw() {
   } else if (start0 == 2) {
     controlP5.getController("b1").hide();
     controlP5.getController("b2").hide();
+    controlP5.getController("b3").show();
     fill(135);
     rectMode(CORNER);
-    rect(308, 220, 401, 401, 10);
+    rect(313, 225, 410, 410, 10);
     rectMode(CENTER);
+    fill(255);
+    textSize(20);
+    textAlign(CENTER);
+    text("Average CO2 emissions per person:", 518, 270);
+    textSize(38);
+    text("x kg", 508, 330);
+    textSize(20);
+    text("Traffic flow density through intersection:", 518, 380);
   }
 }
 
@@ -300,6 +315,18 @@ void controlEvent(ControlEvent theEvent) {
     carmas[0][3]=0;
     carmas1[0][3]=0;
     start0 = 2;
+  }
+  if (theEvent.getController().getName()=="b3") {
+    f = 0;
+    start0 = 0;
+    controlP5.getController("b3").hide();
+    controlP5.getController("b1").show();
+    controlP5.getController("b2").show();
+    controlP5.getController("slider1").setLock(false);
+    controlP5.getController("slider2").setLock(false);
+    controlP5.getController("slider3").setLock(false);
+    controlP5.getController("slider4").setLock(false);
+    cars = 0;
   }
 
   /*print(masinasProc);
